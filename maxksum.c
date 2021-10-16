@@ -63,12 +63,12 @@ int main() {
     int n;
     int k;
     scanf("%d%d", &n, &k);
-    queue* queue = queue_make();
+    queue* q = queue_make();
     long sum = 0;
     for (int i = 0; i < k; ++i) {
         int num;
         scanf("%d", &num);
-        queue_push(queue, num);
+        queue_push(q, num);
         sum += num;
     }
     long max_sum = sum;
@@ -77,15 +77,15 @@ int main() {
         int num;
         scanf("%d", &num);
         sum += num;
-        sum -= queue_back(queue);
+        sum -= queue_back(q);
         if (sum > max_sum) {
             max_sum = sum;
             ans = i + 1;
         }
-        queue_pop(queue);
-        queue_push(queue, num);
+        queue_pop(q);
+        queue_push(q, num);
     }
     printf("%ld\n", ans);
-    queue_cleanup(queue);
+    queue_cleanup(q);
     return 0;
 }
