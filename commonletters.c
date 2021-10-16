@@ -5,7 +5,7 @@
 const int LOWER_SHIFT = 'a';
 const int UPPER_SHIFT = 'A' - 26;
 
-unsigned long count_letters_set() {
+unsigned long get_letters_set() {
     int i = 0;
     unsigned long ans = 0;
     int c;
@@ -17,8 +17,8 @@ unsigned long count_letters_set() {
 }
 
 int main() {
-    unsigned long u = count_letters_set();
-    unsigned long u2 = count_letters_set();
+    unsigned long u = get_letters_set();
+    unsigned long u2 = get_letters_set();
     u &= u2;
     int i = 0;
     unsigned long mask = 1;
