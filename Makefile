@@ -1,19 +1,28 @@
 
-CDEBUGFLAGS= -g -Wall -Wextra -O0 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion
+CC = gcc
+CFLAGS = -g -Wall -Wextra -O2 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
+		-Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align \
+		-fsanitize=address -fsanitize=undefined
+CDEBUGFLAGS = -g -Wall -Wextra -O0 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion
+OBJDIR = bin
 
-all: 1
+sources := $(wildcard *.c)
+binaries := $(addprefix $(OBJDIR)/,$(basename $(sources)))
+debug_binaries := $(addsuffix .d,$(binaries))
 
-1:
-	gcc $(CDEBUGFLAGS) pderive.c -o pderive && ./pderive
+all: $(binaries)
+$(binaries): | $(OBJDIR)
+$(OBJDIR)/% : %.c
+	$(CC) $(CFLAGS) $< -o $@
 
-2:
-	gcc $(CDEBUGFLAGS) fibinc.c -o fibinc && ./fibinc
+d: $(debug_binaries)
+$(debug_binaries): | $(OBJDIR)
+$(OBJDIR)/%.d : %.c
+	$(CC) $(CDEBUGFLAGS) $< -o $@
 
-3:
-	gcc $(CDEBUGFLAGS) rangeset.c -o rangeset && ./rangeset
+$(OBJDIR):
+	mkdir $(OBJDIR)
 
-4:
-	gcc $(CDEBUGFLAGS) commonletters.c -o commonletters && ./commonletters
-
-5:
-	gcc $(CDEBUGFLAGS) maxksum.c -o maxksum && ./maxksum
+.PHONY: clean
+clean:
+	rm -rf bin/
