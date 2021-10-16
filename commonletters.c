@@ -1,26 +1,29 @@
 
 #include <stdio.h>
+#include <ctype.h>
+
+const int UPPER_SHIFT = 'A' - 26;
+
+unsigned long count_letters_set() {
+    int i = 0;
+    unsigned long ans = 0;
+    int c;
+    while ((c = getchar()) != ' ' && c != '\n') {
+        ans |= 1ul << (c - (islower(c) ? 'a' : UPPER_SHIFT));
+        ++i;
+    }
+    return ans;
+}
 
 int main() {
-    long u1 = 0;
-    long u2 = 0;
-    long mask = 1;
+    unsigned long u = count_letters_set();
+    unsigned long u2 = count_letters_set();
+    u &= u2;
     int i = 0;
-    int c;
-    while ((c = getchar()) != ' ') {
-        u1 |= mask << (c - 'a');
-        ++i;
-    }
-    i = 0;
-    while ((c = getchar()) != '\n') {
-        u2 |= mask << (c - 'a');
-        ++i;
-    }
-    u1 &= u2;
-    i = 0;
+    unsigned long mask = 1;
     while (mask != 0) {
-        if (mask & u1) {
-            printf("%c", i + 'a');
+        if (mask & u) {
+            printf("%c", i + (i < 26 ? 'a' : UPPER_SHIFT));
         }
         ++i;
         mask <<= 1;
