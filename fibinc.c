@@ -41,10 +41,10 @@ int main() {
     }
     printf("%d ", d1);
     if (d2 && !d3) {
-        printf("%d\n", d2);
+        printf("%d", d2);
     } else if (d2 || d3) {
-        printf("%d ", d2);
-        printf("%d\n", d3);
+        printf("%d %d", d2, d3);
     }
+    printf("\n");
     return 0;
 }
