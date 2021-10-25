@@ -1,3 +1,9 @@
 
 bin/
 compile_commands.json
+/brute
+/code
+/correctAnswer
+/gen
+/input_file
+/myAnswer
