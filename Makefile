@@ -26,4 +26,4 @@ $(OBJDIR):
 
 .PHONY: clean
 clean:
-	rm -rf bin/
+	rm -rf bin/ input_file gen correctAnswer a a.out brute code myAnswer d
