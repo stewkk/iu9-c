@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -O2 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
 -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align \
 -fsanitize=address -fsanitize=undefined -lm
-CDEBUGFLAGS = -g -Wall -Wextra -O0 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
+CDEBUGFLAGS = -g -Wall -Wextra -Og -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
 -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -lm
 OBJDIR = bin
 
