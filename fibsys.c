@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-#include <stdlib.h>
 
 const size_t FIB_SIZE = 94;
 
