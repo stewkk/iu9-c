@@ -4,12 +4,11 @@
 
 const size_t FIB_SIZE = 94;
 
-char* ull_to_fib(unsigned long long x) {
+void ull_to_fib(unsigned long long x, char* x_fib) {
     if (x == 0) {
-        char* ans = malloc(2 * sizeof(char));
-        ans[0] = '0';
-        ans[1] = '\0';
-        return ans;
+        x_fib[0] = '0';
+        x_fib[1] = '\0';
+        return;
     }
     unsigned long long fib[FIB_SIZE];
     fib[0] = 1;
@@ -22,27 +21,25 @@ char* ull_to_fib(unsigned long long x) {
         index++;
     }
     int max_index = index;
-    char* ans = malloc((size_t)(max_index + 2) * sizeof(char));
     x -= fib[index];
     index--;
-    ans[0] = '1';
+    x_fib[0] = '1';
     for (; index >= 0; index--) {
         if (fib[index] <= x) {
             x -= fib[index];
-            ans[max_index - index] = '1';
+            x_fib[max_index - index] = '1';
         } else {
-            ans[max_index - index] = '0';
+            x_fib[max_index - index] = '0';
         }
     }
-    ans[max_index + 1] = '\0';
-    return ans;
+    x_fib[max_index + 1] = '\0';
 }
 
 int main() {
     unsigned long long x;
     scanf("%llu", &x);
-    char* ans = ull_to_fib(x);
+    char ans[FIB_SIZE];
+    ull_to_fib(x, ans);
     printf("%s\n", ans);
-    free(ans);
     return 0;
 }
