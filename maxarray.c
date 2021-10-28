@@ -32,6 +32,6 @@ int cmp(void* a, void* b) {
 int main() {
     int arr[] = {1, 2, 3, 2, 1, 4, 2, 3}; // 5
     size_t ans = maxarray(arr, 8, sizeof(int), cmp);
-    printf("%zu", ans);
+    printf("%zu\n", ans);
     return 0;
 }
