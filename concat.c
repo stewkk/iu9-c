@@ -26,7 +26,6 @@ int main() {
     int n;
     scanf("%d", &n);
     char* arr[n];
-    getc(stdin);
     for (int i = 0; i < n; ++i) {
         arr[i] = calloc(100, sizeof(char));
         scanf("%s", arr[i]);
