@@ -22,11 +22,11 @@ int cmp(void* a, void* b) {
     int b_int = *(int*)b;
     if (a_int == b_int) {
         return 0;
-    } else if (a_int > b_int) {
-        return 1;
-    } else {
-        return -1;
     }
+    if (a_int > b_int) {
+        return 1;
+    }
+    return -1;
 }
 
 int main() {
