@@ -9,7 +9,7 @@ size_t maxarray(void* base, size_t nel, size_t width,
     uint8_t* cur = base;
     for (size_t i = 1; i < nel; ++i) {
         cur += width;
-        if ((*compare)(cur, max) > 0) {
+        if (compare(cur, max) > 0) {
             ans = i;
             max = cur;
         }
