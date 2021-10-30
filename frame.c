@@ -20,25 +20,27 @@ int main(int argc, char** argv) {
         fprintf(stderr, "Error: text is too long\n");
         return 1;
     }
-    char** buf = calloc(height, sizeof(char*));
-    for (size_t i = 0; i < height; ++i) {
-        buf[i] = calloc(width + 1, sizeof(char));
+    /* to fit \n character */
+    width++;
+    size_t res_len = height * width;
+    char* buf = calloc(res_len + 1, sizeof(char));
+    /* initialize buffer with spaces */
+    memset(buf, ' ', res_len);
+    /* fill first line with asterisks */
+    memset(buf, '*', width);
+    /* fill last list with asterisks */
+    memset(&buf[res_len - width], '*', width);
+    /* fill first and last-1 coloumn with asterisks and last with newline */
+    for (size_t i = 0; i < res_len; i += width) {
+        buf[i] = '*';
+        buf[i + width - 1] = '\n';
+        buf[i + width - 2] = '*';
     }
-    memset(buf[0], '*', width);
-    for (size_t i = 1; i < height - 1; ++i) {
-        memset(buf[i], ' ', width);
-    }
-    memset(buf[height - 1], '*', width);
-    for (size_t i = 0; i < height; ++i) {
-        buf[i][0] = '*';
-        buf[i][width - 1] = '*';
-        buf[i][width] = '\0';
-    }
-    strncpy(&buf[(height - 1) / 2][(width - sz) / 2], text, sz);
-    for (size_t i = 0; i < height; ++i) {
-        puts(buf[i]);
-        free(buf[i]);
-    }
+    /* copy text to buf */
+    strncpy(&buf[(height - 1) / 2 * width + (width - sz - 1) / 2], text, sz);
+    /* terminating character */
+    buf[res_len] = '\0';
+    printf("%s", buf);
     free(buf);
     return 0;
 }
