@@ -21,8 +21,8 @@ int wcount(char* s) {
 }
 
 int main() {
-    char str[100];
-    fgets(str, 100, stdin);
+    char str[BUFSIZ];
+    fgets(str, BUFSIZ, stdin);
     int ans = wcount(str);
     printf("%d\n", ans);
     return 0;
