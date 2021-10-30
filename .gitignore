@@ -7,3 +7,4 @@ compile_commands.json
 /gen
 /input_file
 /myAnswer
+.ccls-cache/
