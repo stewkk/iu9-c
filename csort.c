@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <limits.h>
 
 char cmp(size_t a, size_t b) {
     if (a < b) {
