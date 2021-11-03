@@ -10,15 +10,13 @@ inline void swap(int* base, size_t i, size_t j) {
     base[j] = temp;
 }
 
-void selectsort(int* base, size_t n) {
-    for (size_t j = n - 1; j > 0; --j) {
-        size_t mx = 0;
-        for (size_t i = 1; i <= j; ++i) {
-            if (base[i] >= base[mx]) {
-                mx = i;
-            }
+void insertionsort(int* base, size_t sz) {
+    for (size_t i = 1; i < sz; ++i) {
+        int ins = base[i];
+        size_t j;
+        for (j = i; j > 0 && base[j - 1] > ins; --j) {
+            swap(base, j - 1, j);
         }
-        swap(base, mx, j);
     }
 }
 
@@ -49,7 +47,7 @@ void mergesort_rec(int* base, size_t l, size_t r) {
         merge(base, l, m, r);
     }
     if (len > 1) {
-        selectsort(base + l, r - l);
+        insertionsort(base + l, r - l);
     }
 }
 
