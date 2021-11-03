@@ -19,17 +19,17 @@ void count_letters(char* str, int* count) {
 void dsort(char** str_p) {
     char* str = *str_p;
     size_t sz = strlen(str);
-    int count[26] = {0};
-    count_letters(str, count);
+    int place_in_sorted[26] = {0};
+    count_letters(str, place_in_sorted);
     for (int i = 1; i < 26; ++i) {
-        count[i] += count[i - 1];
+        place_in_sorted[i] += place_in_sorted[i - 1];
     }
     char* sorted = calloc(sz + 1, sizeof(char));
     for (size_t i = sz; i > 0; --i) {
         char entry = str[i - 1];
         int key = entry - 'a';
-        count[key]--;
-        int sorted_index = count[key];
+        place_in_sorted[key]--;
+        int sorted_index = place_in_sorted[key];
         sorted[sorted_index] = entry;
     }
     free(str);
