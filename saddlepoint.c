@@ -1,44 +1,53 @@
 
 #include <stdio.h>
 #include <limits.h>
+#include <assert.h>
 
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
-    int max_elems_indexes[n];
-    int min_elems[m];
-    int min_elems_indexes[m];
-    for (int j = 0; j < m; ++j) {
-        min_elems[j] = INT_MAX;
+    int mins[m];
+    int mx = INT_MIN;
+    int mx_index = 0;
+    int ans = INT_MAX;
+    for (int i = 0; i < m; ++i) {
+        scanf("%d", &mins[i]);
+        if (mins[i] > mx) {
+            mx_index = i;
+            mx = mins[i];
+        }
     }
-    for (int i = 0; i < n; ++i) {
-        int index = -1;
-        int mx = INT_MIN;
+    ans = mx;
+    int ans_i = 0;
+    int ans_j = mx_index;
+    for (int i = 1; i < n; ++i) {
+        mx = INT_MIN;
+        mx_index = 0;
         for (int j = 0; j < m; ++j) {
-            int num;
-            scanf("%d", &num);
-            if (num > mx) {
-                mx = num;
-                index = j;
-            } else if (num == mx) {
-                index = -1;
+            int next;
+            scanf("%d", &next);
+            if (next < mins[j]) {
+                if (mins[j] == ans) {
+                    ans = INT_MAX;
+                }
+                mins[j] = next;
             }
-            if (num < min_elems[j]) {
-                min_elems[j] = num;
-                min_elems_indexes[j] = i;
-            } else if (num == min_elems[j]) {
-                min_elems_indexes[j] = -1;
+            if (next > mx) {
+                mx = next;
+                mx_index = j;
             }
         }
-        max_elems_indexes[i] = index;
-    }
-    for (int i = 0; i < n; ++i) {
-        if (max_elems_indexes[i] != -1
-            && min_elems_indexes[max_elems_indexes[i]] == i) {
-            printf("%d %d\n", i, max_elems_indexes[i]);
-            return 0;
+        if (mins[mx_index] == mx) {
+            assert(ans == INT_MAX);
+            ans = mx;
+            ans_i = i;
+            ans_j = mx_index;
         }
     }
-    printf("none\n");
+    if (ans == INT_MAX) {
+        printf("none\n");
+    } else {
+        printf("%d %d\n", ans_i, ans_j);
+    }
     return 0;
 }
