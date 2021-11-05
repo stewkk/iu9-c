@@ -14,16 +14,17 @@ int main() {
     }
     int mx = -INF;
     int mx_index = 0;
-    int ans = INF;
+    int ans = -INF;
     int ans_i = INF;
     int ans_j = INF;
     for (int i = 0; i < n; ++i) {
+        mx = -INF;
         for (int j = 0; j < m; ++j) {
             int next;
             scanf("%d", &next);
             if (next < mins[j]) {
                 if (mins[j] == ans) {
-                    ans = INT_MAX;
+                    ans = -INF;
                 }
                 mins[j] = next;
             }
@@ -38,7 +39,7 @@ int main() {
             ans_j = mx_index;
         }
     }
-    if (ans == INT_MAX) {
+    if (ans == -INF) {
         printf("none\n");
     } else {
         printf("%d %d\n", ans_i, ans_j);
