@@ -1,28 +1,23 @@
 
 #include <stdio.h>
 #include <limits.h>
-#include <assert.h>
+
+const int INF = INT_MAX;
+const int MAX_N = 10;
 
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
-    int mins[m];
-    int mx = INT_MIN;
-    int mx_index = 0;
-    int ans = INT_MAX;
+    int mins[MAX_N];
     for (int i = 0; i < m; ++i) {
-        scanf("%d", &mins[i]);
-        if (mins[i] > mx) {
-            mx_index = i;
-            mx = mins[i];
-        }
+        mins[i] = INF;
     }
-    ans = mx;
-    int ans_i = 0;
-    int ans_j = mx_index;
-    for (int i = 1; i < n; ++i) {
-        mx = INT_MIN;
-        mx_index = 0;
+    int mx = -INF;
+    int mx_index = 0;
+    int ans = INF;
+    int ans_i = INF;
+    int ans_j = INF;
+    for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
             int next;
             scanf("%d", &next);
@@ -38,7 +33,6 @@ int main() {
             }
         }
         if (mins[mx_index] == mx) {
-            assert(ans == INT_MAX);
             ans = mx;
             ans_i = i;
             ans_j = mx_index;
