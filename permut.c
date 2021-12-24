@@ -14,6 +14,7 @@ bool is_permutation(int* a, int* b) {
             if (el == b[j]) {
                 b[j] = INF;
                 is_found = true;
+                break;
             }
         }
         if (!is_found) {
