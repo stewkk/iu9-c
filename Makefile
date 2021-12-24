@@ -1,9 +1,9 @@
 
 CC = gcc
-CFLAGS = -std=c17 -g -Wall -Wextra -O2 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
+CFLAGS = -std=c99 -g -Wall -Wextra -O2 -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
 -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align \
 -fsanitize=address -fsanitize=undefined -lm
-CDEBUGFLAGS = -std=c17 -g -Wall -Wextra -Og -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
+CDEBUGFLAGS = -std=c99 -g -Wall -Wextra -Og -pedantic -Wshadow -Wformat=2 -Wfloat-equal -Wconversion \
 -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -lm
 OBJDIR = bin
 
