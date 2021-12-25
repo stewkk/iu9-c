@@ -1,40 +1,37 @@
-
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-const int SIEVE_SIZE = 46342;
-const int PRIMES_SIZE = 4792;
-
-void calc_primes(int primes[PRIMES_SIZE]) {
-    char sieve[SIEVE_SIZE];
-    for (int i = 0; i < SIEVE_SIZE; ++i) {
-        sieve[i] = 1;
-    }
+int main() {
+    long x;
+    scanf("%ld", &x);
+    int sieve_size = (int)(labs(x) / 2) + 1;
+    char* sieve = calloc((unsigned long)sieve_size, sizeof(char));
+    memset(sieve, 1, (unsigned long)sieve_size);
+    int ans = 1;
+    char is_x_prime = 1;
     /* sieve[0] = sieve[1] = 0; */
-    int index = 0;
-    for (int i = 2; i < SIEVE_SIZE; ++i) {
+    for (int i = 2; i < sieve_size; ++i) {
+        if (x % i == 0) {
+            is_x_prime = 0;
+        }
         if (sieve[i]) {
-            primes[index] = i;
-            index++;
-            for (int j = i * i; j < SIEVE_SIZE; j += i) {
+            if (x % i == 0) {
+                ans = i;
+            }
+            if (i >= 46341) {
+                continue;
+            }
+            for (int j = i * i; j < sieve_size; j += i) {
                 sieve[j] = 0;
             }
         }
     }
-}
-
-int main() {
-    int x;
-    scanf("%d", &x);
-    if (x == 0) {
-        return 0;
+    if (is_x_prime) {
+        printf("%ld\n", labs(x));
+    } else {
+        printf("%d\n", ans);
     }
-    int primes[PRIMES_SIZE];
-    calc_primes(primes);
-    for (int i = PRIMES_SIZE - 1; i >= 0; --i) {
-        if (x % primes[i] == 0) {
-            printf("%d\n", primes[i]);
-            return 0;
-        }
-    }
+    free(sieve);
     return 0;
 }
