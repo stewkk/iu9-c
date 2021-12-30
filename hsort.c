@@ -32,11 +32,11 @@ void heapify(void* base, size_t width, size_t i, size_t n,
         size_t r = l + 1;
         size_t top = i;
         if (l < n && compare(get_pointer(base, width, i),
-                             get_pointer(base, width, l)) > 0) {
+                             get_pointer(base, width, l)) < 0) {
             i = l;
         }
         if (r < n && compare(get_pointer(base, width, i),
-                             get_pointer(base, width, r)) > 0) {
+                             get_pointer(base, width, r)) < 0) {
             i = r;
         }
         if (i == top) {
@@ -85,12 +85,12 @@ int compare_mystring(const void* a, const void* b) {
     unsigned long l = ((const mystring_t*)a)->a_count;
     unsigned long r = ((const mystring_t*)b)->a_count;
     if (l < r) {
-        return 1;
+        return -1;
     }
     if (l == r) {
         return 0;
     }
-    return -1;
+    return 1;
 }
 
 int main() {
