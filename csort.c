@@ -41,7 +41,7 @@ words_array_t* make_words_array() {
 void push_back(words_array_t* arr, word_t word) {
     if (arr->sz == arr->_i_sz) {
         arr->_i_sz *= 2;
-        arr->data = realloc(arr->data, arr->_i_sz);
+        arr->data = realloc(arr->data, arr->_i_sz * sizeof(word_t));
     }
     arr->data[arr->sz] = word;
     arr->sz++;
