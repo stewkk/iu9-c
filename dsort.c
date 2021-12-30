@@ -28,6 +28,10 @@ void dsort(char* str) {
 int main() {
     char* str;
     scanf("%ms", &str);
+    if (!str) {
+        printf("\n");
+        return 0;
+    }
     dsort(str);
     printf("%s\n", str);
     free(str);
