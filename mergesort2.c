@@ -19,7 +19,7 @@ void merge(void* base, size_t width,
         uint8_t* i_p = get_pointer(base, width, i);
         uint8_t* j_p = get_pointer(base, width, j);
         uint8_t* buf_index_p = get_pointer(buf, width, buf_index);
-        if (j < r && (i == m || compare(j_p, i_p) > 0)) {
+        if (j < r && (i == m || compare(j_p, i_p) < 0)) {
             memcpy(buf_index_p, j_p, width);
             j++;
         } else {
@@ -51,12 +51,12 @@ int compare(void* a, void* b) {
     int first = abs(*(int*)a);
     int second = abs(*(int*)b);
     if (first < second) {
-        return 1;
+        return -1;
     }
     if (first == second) {
         return 0;
     }
-    return -1;
+    return 1;
 }
 
 int main() {

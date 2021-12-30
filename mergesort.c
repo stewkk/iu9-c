@@ -4,7 +4,7 @@
 #include <limits.h>
 #include <string.h>
 
-inline void swap(int* base, size_t i, size_t j) {
+void swap(int* base, size_t i, size_t j) {
     int temp = base[i];
     base[i] = base[j];
     base[j] = temp;
