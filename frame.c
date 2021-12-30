@@ -4,21 +4,33 @@
 #include <string.h>
 
 int main(int argc, char** argv) {
-    if (argc < 2) {
-        printf("Usage: frame <height> <width> <text>");
+    if (argc < 4) {
+        printf("Usage: frame <height> <width> <text>\n");
         return 0;
     }
     size_t height = (size_t)strtol(argv[1], NULL, 10);
     size_t width = (size_t)strtol(argv[2], NULL, 10);
-    char* text = argv[3];
+    size_t len = strlen(argv[3]);
+    for (int i = 4; i < argc; ++i) {
+        len++;
+        len += strlen(argv[i]);
+    }
+    char* text = malloc(len + 1);
+    strcpy(text, argv[3]);
+    for (int i = 4; i < argc; ++i) {
+        strcat(text, " ");
+        strcat(text, argv[i]);
+    }
     if (height < 3) {
-        fprintf(stderr, "Error: height must be greater than 2");
-        return 1;
+        free(text);
+        printf("Error\n");
+        return 0;
     }
     size_t sz = strlen(text);
     if (sz > width - 2) {
-        fprintf(stderr, "Error: text is too long\n");
-        return 1;
+        free(text);
+        printf("Error\n");
+        return 0;
     }
     /* to fit \n character */
     width++;
@@ -42,5 +54,6 @@ int main(int argc, char** argv) {
     buf[res_len] = '\0';
     printf("%s", buf);
     free(buf);
+    free(text);
     return 0;
 }
