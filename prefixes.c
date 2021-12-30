@@ -29,10 +29,15 @@ int main(int argc, char** argv) {
     for (size_t period = 1; period <= sqrt(sz); ++period) {
         size_t i = period * 2 - 1;
         int k = 2;
+        char flag = 0;
         while (i < sz && pref[i] >= period) {
             printf("%zu %d\n", i + 1, k);
             i += period;
             k++;
+            flag = 1;
+        }
+        if (flag) {
+            period = i;
         }
     }
     free(pref);
