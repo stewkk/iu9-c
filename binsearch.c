@@ -6,20 +6,27 @@ unsigned long binsearch(unsigned long nel, int (*compare)(unsigned long i)) {
     unsigned long r = nel;
     while (l + 1 < r) {
         unsigned long m = (l + r) / 2;
-        if (compare(m) < 0) {
-            r = m;
-        } else {
+        int res = compare(m);
+        if (!res) {
+            return m;
+        }
+        if (res < 0) {
             l = m;
+        } else {
+            r = m;
         }
     }
-    return l;
+    if (compare(l) == 0) {
+        return l;
+    }
+    return nel;
 }
 
 int arr[7] = {1, 2, 3, 4, 5, 7, 10};
-int x = 7;
+int x = 11;
 
 int cmp(unsigned long i) {
-    if (x < arr[i]) {
+    if (arr[i] < x) {
         return -1;
     }
     if (x == arr[i]) {
