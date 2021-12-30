@@ -5,7 +5,7 @@
 const size_t MAX_N = 24;
 
 char is_power2(int n) {
-    if (n < 0) {
+    if (n <= 0) {
         return 0;
     }
     char flag = 0;
