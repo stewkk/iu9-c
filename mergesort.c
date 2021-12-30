@@ -14,7 +14,7 @@ void insertionsort(int* base, size_t sz) {
     for (size_t i = 1; i < sz; ++i) {
         int ins = base[i];
         size_t j;
-        for (j = i; j > 0 && base[j - 1] > ins; --j) {
+        for (j = i; j > 0 && abs(base[j - 1]) > abs(ins); --j) {
             swap(base, j - 1, j);
         }
     }
@@ -26,7 +26,7 @@ void merge(int* base, size_t l, size_t m, size_t r) {
     size_t i = l;
     size_t j = m;
     for (size_t buf_index = 0; buf_index < buf_sz; ++buf_index) {
-        if (j < r && (i == m || base[j] < base[i])) {
+        if (j < r && (i == m || abs(base[j]) < abs(base[i]))) {
             buf[buf_index] = base[j];
             j++;
         } else {
