@@ -63,10 +63,10 @@ int main() {
               &arr[i].Month,
               &arr[i].Day);
     }
-    int bases[3] = {60, 11, 30};
+    int bases[3] = {61, 12, 31};
     arr = radixsort(arr, sizeof(Date), n, 3, bases, get_key);
     for (size_t i = 0; i < n; ++i) {
-        printf("%d %02d %02d\n", arr[i].Year, arr[i].Month, arr[i].Day);
+        printf("%04d %02d %02d\n", arr[i].Year, arr[i].Month, arr[i].Day);
     }
     free(arr);
     return 0;
