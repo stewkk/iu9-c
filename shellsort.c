@@ -24,7 +24,7 @@ void shellsort(unsigned long nel,
         long d = fib[d_index];
         for (long i = d; i < nel; ++i) {
             for (long loc = i - d;
-                    loc >= 0 && compare(loc + d, loc) > 0; loc -= d) {
+                    loc >= 0 && compare(loc + d, loc) < 0; loc -= d) {
                 swap(loc + d, loc);
             }
         }
@@ -39,9 +39,9 @@ int compare(unsigned long i, unsigned long j) {
         return 0;
     }
     if (arr[i] < arr[j]) {
-        return 1;
+        return -1;
     }
-    return -1;
+    return 1;
 }
 
 void swap(unsigned long i, unsigned long j) {
