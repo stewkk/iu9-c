@@ -11,12 +11,12 @@
 
 char cmp(size_t a, size_t b) {
     if (a < b) {
-        return 1;
+        return -1;
     }
     if (a == b) {
         return 0;
     }
-    return -1;
+    return 1;
 }
 
 typedef struct {
@@ -102,7 +102,7 @@ void csort(char* src, char* dest) {
     size_t* count = calloc(words_count, sizeof(size_t));
     for (size_t i = 0; i < words_count - 1; ++i) {
         for (size_t j = i + 1; j < words_count; ++j) {
-            if (cmp(words->data[i].len, words->data[j].len) >= 0) {
+            if (cmp(words->data[i].len, words->data[j].len) <= 0) {
                 count[j]++;
             } else {
                 count[i]++;
