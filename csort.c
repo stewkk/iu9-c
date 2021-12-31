@@ -83,12 +83,16 @@ void sorted_string_recovery(size_t words_count, size_t* count, words_array_t* wo
         while (count[j] != i) {
             j++;
         }
-        for (char* p = words->data[j].p; !isspace(*p); ++p) {
+        size_t ind = 0;
+        for (char* p = words->data[j].p; !isspace(*p) && ind < words->data[j].len; ++p) {
+            ind++;
             dest[dest_index] = *p;
             dest_index++;
         }
-        dest[dest_index] = ' ';
-        dest_index++;
+        if (i + 1 != words_count) {
+          dest[dest_index] = ' ';
+          dest_index++;
+        }
         dest[dest_index] = '\0';
     }
 }
