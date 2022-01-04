@@ -38,11 +38,13 @@ int main() {
                 printf(ans ? "NO\n" : "YES\n");
             }
         } else {
-            int ind;
             scanf("%d%s", &ind, &s[0]);
             it = &s[0];
             while (*it != '\0') {
-                arr[ind] = arr[ind - 1] ^ (1 << (*it - 'a'));
+                arr[ind] = (1 << (*it - 'a'));
+                if (ind) {
+                    arr[ind] ^= arr[ind - 1];
+                }
                 ind++;
                 it++;
             }
