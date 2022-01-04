@@ -56,6 +56,7 @@ int main(int argc, char** argv) {
         }
         k += max(d1[i][t[k] - 33], s_len - i);
     }
+    printf("%d\n", t_len);
     d1_cleanup(d1, s_len);
     return 0;
 }
