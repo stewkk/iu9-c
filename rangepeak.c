@@ -66,9 +66,6 @@ int main() {
     }
     int* t = tree_make(n, peak);
     int m;
-    for (int i = 0; i < n; ++i) {
-        printf("%d ", peak[i]);
-    }
     scanf("%d", &m);
     for (int i = 0; i < m; ++i) {
         char* op;
