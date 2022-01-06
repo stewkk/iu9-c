@@ -62,7 +62,6 @@ int main() {
                 tree_update(t, n, j + 1, (1 << (str[j] - 'a')) ^ (1 << (s[j - ind] - 'a')));
             }
             memcpy(&str[ind], s, (size_t)len);
-            printf("%s\n", str);
         }
     }
     free(t);
