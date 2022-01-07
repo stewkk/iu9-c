@@ -41,8 +41,8 @@ int main() {
     int* a = malloc(n * sizeof(int));
     int* b = malloc(n * sizeof(int));
     for (size_t i = 0; i < n; ++i) {
-        char temp[2];
-        scanf("%d%s%d", &a[i], temp, &b[i]);
+        char temp;
+        scanf("%d%1c%d", &a[i], &temp, &b[i]);
     }
     pair_t ans = maxprod(n, a, b);
     printf("%zu %zu\n", ans.first, ans.second);
