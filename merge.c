@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     int k;
@@ -114,24 +115,37 @@ int main() {
     scanf("%d", &k);
     size_t sz = 0;
     int sizes[k];
+    int* arrays[k];
     for (int i = 0; i < k; ++i) {
         scanf("%d", &sizes[i]);
+        arrays[i] = malloc(sizes[i] * sizeof(int));
         sz += (size_t)sizes[i];
     }
     queue_t* q = queue_make(sz);
     for (int i = 0; i < k; ++i) {
         for (int j = 0; j < sizes[i]; ++j) {
-            int n;
-            scanf("%d", &n);
-            queue_push(q, -n, n);
+            scanf("%d", &arrays[i][j]);
         }
     }
-    while (!queue_empty(q)) {
+    int indexes[k];
+    for (int i = 0; i < k; ++i) {
+        queue_push(q, -arrays[i][0], i);
+        indexes[i] = 1;
+    }
+    for (size_t i = 0; i < sz; ++i) {
         node_t* v = queue_pop(q);
-        printf("%d ", v->v);
+        printf("%d ", -v->k);
+        int array_index = v->v;
+        if (indexes[array_index] < sizes[array_index]) {
+            queue_push(q, -arrays[array_index][indexes[array_index]], array_index);
+            indexes[array_index]++;
+        }
         free(v);
     }
     printf("\n");
     queue_cleanup(q);
+    for (int i = 0; i < k; ++i) {
+        free(arrays[i]);
+    }
     return 0;
 }
