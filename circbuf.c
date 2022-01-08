@@ -49,10 +49,10 @@ void push(queue_t* q, int v) {
         q->_tail = new_i;
     }
     if (q->size) {
-      q->_tail++;
-      if (q->_tail == q->_capacity) {
-        q->_tail = 0;
-      }
+        q->_tail++;
+        if (q->_tail == q->_capacity) {
+            q->_tail = 0;
+        }
     }
     q->_array[q->_tail] = v;
     q->size++;
@@ -61,7 +61,9 @@ void push(queue_t* q, int v) {
 int pop(queue_t* q) {
     int v = front(q);
     q->size--;
-    q->_head++;
+    if (q->size) {
+        q->_head++;
+    }
     if (q->_head == q->_capacity) {
         q->_head = 0;
     }
