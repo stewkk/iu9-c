@@ -3,12 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
+struct trie {
     int v;
-    struct trie_t* arcs[26];
-} trie_t;
+    struct trie* arcs[26];
+};
+
+typedef struct trie trie_t;
 
 trie_t* make_trie();
+char trie_contains(trie_t* trie, char* str);
 void trie_insert(trie_t* trie, char* str);
 void trie_delete(trie_t* trie, char* str);
 int trie_prefix(trie_t* trie, char* str);
@@ -21,6 +24,17 @@ trie_t* make_trie() {
         new->arcs[i] = NULL;
     }
     return new;
+}
+
+char trie_contains(trie_t* trie, char* str) {
+    while (*str != '\0') {
+        if (!trie->arcs[*str - 'a']) {
+            return 0;
+        }
+        trie = trie->arcs[*str - 'a'];
+        str++;
+    }
+    return 1;
 }
 
 void trie_insert(trie_t* trie, char* str) {
@@ -77,7 +91,9 @@ int main() {
         if (!strcmp(command, "INSERT")) {
             char* str;
             scanf("%ms", &str);
-            trie_insert(trie, str);
+            if (!trie_contains(trie, str)) {
+                trie_insert(trie, str);
+            }
             free(str);
         } else if (!strcmp(command, "DELETE")) {
             char* str;
