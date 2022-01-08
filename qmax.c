@@ -36,7 +36,7 @@ dstack_t* dstack_make(size_t sz) {
     new->_max = malloc(sz * sizeof(int));
     new->_capacity = sz;
     new->_top1 = 0;
-    new->_top2 = 9;
+    new->_top2 = sz - 1;
     return new;
 }
 
