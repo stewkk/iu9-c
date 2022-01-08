@@ -19,12 +19,13 @@ pair_t maxprod(size_t n, int* a, int* b) {
     for (size_t i = 0; i < n; ++i) {
         prod *= a[i];
         prod /= b[i];
+        printf("%Lf\n", prod);
         if (prod - max > EPS) {
             max = prod;
             l = start;
             r = i;
         }
-        if (fabsl(prod) < EPS) {
+        if (prod < 1) {
             start = i + 1;
             prod = 1;
         }
