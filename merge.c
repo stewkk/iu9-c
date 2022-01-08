@@ -8,11 +8,12 @@ typedef struct {
     size_t index;
 } node_t;
 
-void swap(node_t** a, node_t** b) {
-    node_t* temp = *a;
-    *a = *b;
-    *b = temp;
-}
+#define swap(a, b)                                                             \
+  {                                                                            \
+    node_t *temp = a;                                                          \
+    a = b;                                                                     \
+    b = temp;                                                                  \
+  }
 
 typedef struct {
     node_t** _array;
@@ -53,7 +54,7 @@ void* queue_push(queue_t* q, int k, int v) {
     new->k = k;
     new->v = v;
     while (i > 0 && q->_array[(i - 1) / 2]->k < k) {
-        swap(&q->_array[(i - 1) / 2], &q->_array[i]);
+        swap(q->_array[(i - 1) / 2], q->_array[i]);
         q->_array[i]->index = i;
         i = (i - 1) / 2;
     }
@@ -81,7 +82,7 @@ void* queue_pop(queue_t* q) {
             if (i == top) {
                 break;
             }
-            swap(&q->_array[i], &q->_array[top]);
+            swap(q->_array[i], q->_array[top]);
             q->_array[i]->index = i;
             q->_array[top]->index = top;
         }
@@ -93,7 +94,7 @@ void queue_inc_key(queue_t* q, node_t* ptr, int k) {
     size_t i = ptr->index;
     ptr->k = k;
     while (i > 0 && q->_array[(i - 1) / 2]->k < k) {
-        swap(&q->_array[(i - 1) / 2], &q->_array[i]);
+        swap(q->_array[(i - 1) / 2], q->_array[i]);
         q->_array[i]->index = i;
         i = (i - 1) / 2;
     }
