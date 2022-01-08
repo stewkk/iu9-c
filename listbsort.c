@@ -64,9 +64,14 @@ struct Elem* bsort(struct Elem *list) {
 
 int main() {
     struct Elem* list = list_make();
-    char* word;
-    while (scanf("%ms", &word) != EOF) {
-        list = list_push_front(list, word);
+    char* words[5000];
+    int i = 0;
+    while (scanf("%ms", &words[i]) != EOF) {
+        i++;
+    }
+    while (i > 0) {
+        i--;
+        list = list_push_front(list, words[i]);
     }
     list = bsort(list);
     list_output(list);
