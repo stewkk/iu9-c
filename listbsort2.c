@@ -6,7 +6,6 @@
 struct Elem {
     struct Elem *next;
     char *word;
-    size_t len;
 };
 
 struct Elem* list_make();
@@ -22,7 +21,6 @@ struct Elem* list_push_front(struct Elem* list, char* str) {
     struct Elem* new = malloc(sizeof(struct Elem));
     new->word = str;
     new->next = list;
-    new->len = strlen(str);
     return new;
 }
 
@@ -49,7 +47,7 @@ struct Elem* bsort(struct Elem *list) {
         struct Elem* prev = NULL;
         struct Elem* i = list;
         while (i->next != bound) {
-          if (i->next->len < i->len) {
+          if (strlen(i->next->word) < strlen(i->word)) {
               struct Elem* nexti = i->next;
               if (prev) {
                   prev->next = i->next;

@@ -6,7 +6,6 @@
 struct Elem {
     struct Elem *next;
     char *word;
-    size_t len;
 };
 
 struct Elem* list_make();
@@ -22,7 +21,6 @@ struct Elem* list_push_front(struct Elem* list, char* str) {
     struct Elem* new = malloc(sizeof(struct Elem));
     new->word = str;
     new->next = list;
-    new->len = strlen(str);
     return new;
 }
 
@@ -44,9 +42,6 @@ void list_cleanup(struct Elem* list) {
 }
 
 void swap(struct Elem* a, struct Elem* b) {
-    size_t temp = a->len;
-    a->len = b->len;
-    b->len = temp;
     char* temp2 = a->word;
     a->word = b->word;
     b->word = temp2;
@@ -57,7 +52,7 @@ struct Elem* bsort(struct Elem *list) {
     while (bound != list) {
         struct Elem* i = list;
         while (i->next != bound) {
-          if (i->next->len < i->len) {
+          if (strlen(i->next->word) < strlen(i->word)) {
               swap(i->next, i);
           }
           i = i->next;
