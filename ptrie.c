@@ -5,6 +5,7 @@
 
 struct trie {
     int v;
+    int word;
     struct trie* arcs[26];
 };
 
@@ -20,6 +21,7 @@ void trie_cleanup(trie_t* trie);
 trie_t* make_trie() {
     trie_t* new = malloc(sizeof(trie_t));
     new->v = 0;
+    new->word = 0;
     for (int i = 0; i < 26; ++i) {
         new->arcs[i] = NULL;
     }
@@ -34,7 +36,7 @@ char trie_contains(trie_t* trie, char* str) {
         trie = trie->arcs[*str - 'a'];
         str++;
     }
-    return 1;
+    return trie->word == 1;
 }
 
 void trie_insert(trie_t* trie, char* str) {
@@ -48,6 +50,7 @@ void trie_insert(trie_t* trie, char* str) {
         trie->v++;
         str++;
     }
+    trie->word = 1;
 }
 
 void trie_delete(trie_t* trie, char* str) {
@@ -58,6 +61,7 @@ void trie_delete(trie_t* trie, char* str) {
         trie->v--;
         str++;
     }
+    trie->word = 0;
 }
 
 int trie_prefix(trie_t* trie, char* str) {
@@ -98,7 +102,9 @@ int main() {
         } else if (!strcmp(command, "DELETE")) {
             char* str;
             scanf("%ms", &str);
-            trie_delete(trie, str);
+            if (trie_contains(trie, str)) {
+                trie_delete(trie, str);
+            }
             free(str);
         } else if (!strcmp(command, "PREFIX")) {
             char* str;
