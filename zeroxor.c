@@ -111,6 +111,9 @@ int main() {
         if (ind != -1) {
             count[i] = count[ind] + 1;
         }
+        if (!xor && !count[i]) {
+            count[i]++;
+        }
         disparray_insert(disparray, xor, i);
         ans += count[i];
     }
