@@ -41,7 +41,7 @@ typedef struct {
     size_t m;
 } disparray_t;
 
-#define hash(i, m) (i % m)
+#define hash(i, m) (abs(i) % m)
 
 disparray_t* disparray_make(size_t m);
 void disparray_cleanup(disparray_t* t);
@@ -86,7 +86,7 @@ void disparray_insert(disparray_t* t, int i, size_t v) {
     }
 }
 
-#define DISPARRAY_SZ 10
+#define DISPARRAY_SZ 100000
 
 int main() {
     size_t n;
@@ -114,10 +114,6 @@ int main() {
         disparray_insert(disparray, xor, i);
         ans += count[i];
     }
-    for (size_t i = 0; i < n; ++i) {
-        printf("%d ", count[i]);
-    }
-    printf("\n");
     printf("%lld\n", ans);
     disparray_cleanup(disparray);
     return 0;
