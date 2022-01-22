@@ -90,13 +90,13 @@ int main() {
     for (int i = 0; i < n; ++i) {
         char* str;
         scanf("%ms", &str);
-        if (!strcmp(str, "ENQ")) {
+        if (strcmp(str, "ENQ") == 0) {
             int x;
             scanf("%d", &x);
             push(q, x);
-        } else if (!strcmp(str, "DEQ")) {
+        } else if (strcmp(str, "DEQ") == 0) {
             printf("%d\n", pop(q));
-        } else if (!strcmp(str, "EMPTY")) {
+        } else if (strcmp(str, "EMPTY") == 0) {
             if (empty(q)) {
                 printf("true\n");
             } else {

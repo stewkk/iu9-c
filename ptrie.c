@@ -92,21 +92,21 @@ int main() {
     for (int i = 0; i < n; ++i) {
         char* command;
         scanf("%ms", &command);
-        if (!strcmp(command, "INSERT")) {
+        if (strcmp(command, "INSERT") == 0) {
             char* str;
             scanf("%ms", &str);
             if (!trie_contains(trie, str)) {
                 trie_insert(trie, str);
             }
             free(str);
-        } else if (!strcmp(command, "DELETE")) {
+        } else if (strcmp(command, "DELETE") == 0) {
             char* str;
             scanf("%ms", &str);
             if (trie_contains(trie, str)) {
                 trie_delete(trie, str);
             }
             free(str);
-        } else if (!strcmp(command, "PREFIX")) {
+        } else if (strcmp(command, "PREFIX") == 0) {
             char* str;
             scanf("%ms", &str);
             printf("%d\n", trie_prefix(trie, str));

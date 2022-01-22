@@ -111,25 +111,25 @@ int main() {
     for (int i = 0; i < n; ++i) {
         char* command;
         scanf("%ms", &command);
-        if (!strcmp(command, "CONST")) {
+        if (strcmp(command, "CONST") == 0) {
             const_handler(st);
-        } else if (!strcmp(command, "ADD")) {
+        } else if (strcmp(command, "ADD") == 0) {
             add_handler(st);
-        } else if (!strcmp(command, "SUB")) {
+        } else if (strcmp(command, "SUB") == 0) {
             sub_handler(st);
-        } else if (!strcmp(command, "MUL")) {
+        } else if (strcmp(command, "MUL") == 0) {
             mul_handler(st);
-        } else if (!strcmp(command, "DIV")) {
+        } else if (strcmp(command, "DIV") == 0) {
             div_handler(st);
-        } else if (!strcmp(command, "MAX")) {
+        } else if (strcmp(command, "MAX") == 0) {
             max_handler(st);
-        } else if (!strcmp(command, "MIN")) {
+        } else if (strcmp(command, "MIN") == 0) {
             min_handler(st);
-        } else if (!strcmp(command, "NEG")) {
+        } else if (strcmp(command, "NEG") == 0) {
             neg_handler(st);
-        } else if (!strcmp(command, "DUP")) {
+        } else if (strcmp(command, "DUP") == 0) {
             dup_handler(st);
-        } else if (!strcmp(command, "SWAP")) {
+        } else if (strcmp(command, "SWAP") == 0) {
             swap_handler(st);
         }
         free(command);
