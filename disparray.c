@@ -94,12 +94,12 @@ int main() {
     for (size_t i = 0; i < n; ++i) {
         char* op;
         scanf("%ms", &op);
-        if (!strcmp(op, "ASSIGN")) {
+        if (strcmp(op, "ASSIGN") == 0) {
             size_t index;
             int value;
             scanf("%zu%d", &index, &value);
             disparray_insert(disparray, index, value);
-        } else if (!strcmp(op, "AT")) {
+        } else if (strcmp(op, "AT") == 0) {
             size_t index;
             scanf("%zu", &index);
             printf("%d\n", disparray_get(disparray, index));

@@ -154,15 +154,15 @@ int main() {
     for (int i = 0; i < n; ++i) {
         char* command;
         scanf("%ms", &command);
-        if (!strcmp(command, "ENQ")) {
+        if (strcmp(command, "ENQ") == 0) {
             int x;
             scanf("%d", &x);
             queue_push(q, x);
-        } else if (!strcmp(command, "DEQ")) {
+        } else if (strcmp(command, "DEQ") == 0) {
             printf("%d\n", queue_pop(q));
-        } else if (!strcmp(command, "MAX")) {
+        } else if (strcmp(command, "MAX") == 0) {
             printf("%d\n", queue_max(q));
-        } else if (!strcmp(command, "EMPTY")) {
+        } else if (strcmp(command, "EMPTY") == 0) {
             if (queue_empty(q)) {
                 printf("true\n");
             } else {

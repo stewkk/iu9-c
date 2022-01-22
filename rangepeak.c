@@ -70,12 +70,12 @@ int main() {
     for (int i = 0; i < m; ++i) {
         char* op;
         scanf("%ms", &op);
-        if (!strcmp(op, "PEAK")) {
+        if (strcmp(op, "PEAK") == 0) {
             int l;
             int r;
             scanf("%d%d", &l, &r);
             printf("%d\n", tree_query(t, l + 1, r + 1));
-        } else if (!strcmp(op, "UPD")) {
+        } else if (strcmp(op, "UPD") == 0) {
             int ind;
             int v;
             scanf("%d%d", &ind, &v);
