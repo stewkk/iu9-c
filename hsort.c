@@ -9,7 +9,9 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-void* get_pointer(void* base, size_t width, size_t i) {
+inline void* get_pointer(void* base, size_t width, size_t i);
+
+inline void* get_pointer(void* base, size_t width, size_t i) {
     return (char*)base + width * i;
 }
 
