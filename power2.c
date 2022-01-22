@@ -5,22 +5,7 @@
 const size_t MAX_N = 24;
 
 char is_power2(int n) {
-    if (n <= 0) {
-        return 0;
-    }
-    char flag = 0;
-    uint32_t mask = 1;
-    while (mask) {
-        if (mask & n) {
-            if (flag) {
-                return 0;
-            } else {
-                flag = 1;
-            }
-        }
-        mask <<= 1;
-    }
-    return 1;
+    return (n & (n - 1)) == 0;
 }
 
 void gen(size_t index, int sum, size_t n, int* arr, int* ans) {
