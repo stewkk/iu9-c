@@ -29,10 +29,7 @@ pair_t maxprod(size_t n, int* a, int* b) {
             prod = 1;
         }
     }
-    pair_t ans;
-    ans.first = l;
-    ans.second = r;
-    return ans;
+    return (pair_t){l, r};
 }
 
 int main() {
